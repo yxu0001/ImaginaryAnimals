@@ -1,0 +1,25 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "c1ed85ce-b2e9-4a19-a9cb-fd20b136c2aa",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "c1ed85ce-b2e9-4a19-a9cb-fd20b136c2aa" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "c1ed85ce-b2e9-4a19-a9cb-fd20b136c2aa" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "D1C335C2-2D6C-4A69-9245-B5DC527AEAD9",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "c1ed85ce-b2e9-4a19-a9cb-fd20b136c2aa" : "Yijia%20Test\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "ImaginaryAnimalsLister",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "iOSBootCamp\/ImaginaryAnimalsLister\/ImaginaryAnimalsLister.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/streamsaga.unfuddle.com\/svn\/streamsaga_firstrepo",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "c1ed85ce-b2e9-4a19-a9cb-fd20b136c2aa"
+    }
+  ]
+}
