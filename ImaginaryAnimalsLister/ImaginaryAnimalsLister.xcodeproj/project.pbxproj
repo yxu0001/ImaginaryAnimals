@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA29DC781BA88E2C0005EA6E /* Animals.json in Resources */ = {isa = PBXBuildFile; fileRef = AA29DC771BA88E2C0005EA6E /* Animals.json */; settings = {ASSET_TAGS = (); }; };
 		AAE2BED81BA7780900A9C653 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2BED71BA7780900A9C653 /* AppDelegate.swift */; };
 		AAE2BEDD1BA7780900A9C653 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAE2BEDB1BA7780900A9C653 /* Main.storyboard */; };
 		AAE2BEDF1BA7780900A9C653 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAE2BEDE1BA7780900A9C653 /* Assets.xcassets */; };
@@ -32,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AA29DC771BA88E2C0005EA6E /* Animals.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Animals.json; path = ImaginaryAnimalsLister/Animals.json; sourceTree = "<group>"; };
 		AAE2BED41BA7780900A9C653 /* ImaginaryAnimalsLister.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImaginaryAnimalsLister.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE2BED71BA7780900A9C653 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAE2BEDC1BA7780900A9C653 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 		AAE2BECB1BA7780900A9C653 = {
 			isa = PBXGroup;
 			children = (
+				AA29DC771BA88E2C0005EA6E /* Animals.json */,
 				AAE2BED61BA7780900A9C653 /* ImaginaryAnimalsLister */,
 				AAE2BEEB1BA7780900A9C653 /* ImaginaryAnimalsListerTests */,
 				AAE2BED51BA7780900A9C653 /* Products */,
@@ -189,6 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAE2BEE21BA7780900A9C653 /* LaunchScreen.storyboard in Resources */,
+				AA29DC781BA88E2C0005EA6E /* Animals.json in Resources */,
 				AAE2BEDF1BA7780900A9C653 /* Assets.xcassets in Resources */,
 				AAE2BEDD1BA7780900A9C653 /* Main.storyboard in Resources */,
 			);
@@ -403,6 +407,7 @@
 				AAE2BEF31BA7780900A9C653 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AAE2BEF41BA7780900A9C653 /* Build configuration list for PBXNativeTarget "ImaginaryAnimalsListerTests" */ = {
 			isa = XCConfigurationList;
@@ -411,6 +416,7 @@
 				AAE2BEF61BA7780900A9C653 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
