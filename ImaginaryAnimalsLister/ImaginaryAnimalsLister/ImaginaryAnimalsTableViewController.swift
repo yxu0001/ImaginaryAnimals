@@ -13,7 +13,7 @@ class ImaginaryAnimalsTableViewController: UITableViewController {
     var animalsArray: [ImaginaryAnimal]
     
     required init?(coder aDecoder: NSCoder) {
-        animalsArray = AnimalsLoader.loadAnimals()
+        animalsArray = AnimalsLoader().loadAnimals()
         
         super.init(coder: aDecoder)
     }

@@ -9,22 +9,26 @@
 import Foundation
 
 struct AnimalsLoader {
-    static func loadAnimals() -> [ImaginaryAnimal] {
+    func loadAnimals() -> [ImaginaryAnimal] {
         
-        var mermaid = ImaginaryAnimal()
-        mermaid.name = "Mermaid"
-        mermaid.location = "North America"
-        mermaid.height = 1.5
-        mermaid.dateLastSeen = "1858"
-        mermaid.imageURL = NSURL(string: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Waterhouse_a_mermaid.jpg")
+        var animals = [ImaginaryAnimal]()
         
-        let lochness = ImaginaryAnimal(name: "Loch Ness Monster", height: 31, location: "Scotland", dateLastSeen: "1951", imageURL: NSURL(string:"https://upload.wikimedia.org/wikipedia/en/5/5e/Hoaxed_photo_of_the_Loch_Ness_monster.jpg"))
+        guard let url = NSBundle.mainBundle().URLForResource("Animals", withExtension:"json"),
+            data = NSData(contentsOfURL: url),
+            jsonArray = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [AnyObject]
+        else {
+                fatalError("Cannot open file or parse Json")
+        }
         
-        let bigfoot = ImaginaryAnimal(name: "Bigfoot", height: 2.1, location: "North America", dateLastSeen: "1963", imageURL: nil)
+        if let jsonArray = jsonArray {
+            for obj in jsonArray {
+                if let animal = ImaginaryAnimal(fromJSON: obj) {
+                    animals.append(animal)
+                }
+            }
+        }
         
-        let ogpogo = ImaginaryAnimal(name: "Ogopogo", height: 3.2, location: "Okanagan Lake, Canada", dateLastSeen: "1987", imageURL: NSURL(string:"https://upload.wikimedia.org/wikipedia/commons/6/63/Ogo-Pogo%2C_The_Funny_Fox-Trot.jpg"))
-        
-        
-        return [mermaid, lochness, bigfoot, ogpogo]
+        return animals
+
     }
 }
