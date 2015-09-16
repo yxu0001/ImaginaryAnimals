@@ -49,7 +49,7 @@ class DetailViewController: UIViewController {
     }
     
     private func loadImage () {
-        let queue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+        /*let queue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
         spinnerView.startAnimating()
         dispatch_async(queue, { [weak self] in
         
@@ -60,7 +60,24 @@ class DetailViewController: UIViewController {
                 self?.imageView.image = UIImage(data:imageData)})
             
             }
-        })
+        })*/
+        let queue = NSOperationQueue()
+        
+        let loadimageOperation = NSBlockOperation.init(block: { [weak self] in
+            
+            if let url = self?.animal?.imageURL,
+            imageData = NSData(contentsOfURL: url) {
+                let mainqueue = NSOperationQueue.mainQueue()
+                let showImageOp = NSBlockOperation.init(block:{
+                    self?.spinnerView.stopAnimating()
+                    self?.imageView.image = UIImage(data:imageData)})
+                
+                mainqueue.addOperation(showImageOp)
+        
+            }})
+
+        queue.addOperation(loadimageOperation)
+        
     }
     
 
