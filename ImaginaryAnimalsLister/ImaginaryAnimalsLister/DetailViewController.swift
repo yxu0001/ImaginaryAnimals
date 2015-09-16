@@ -32,10 +32,16 @@ class DetailViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if let url = animal?.imageURL,
-            imageData = NSData(contentsOfURL: url) {
-                self.imageView.image = UIImage(data:imageData)
-        }
+        let queue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+        
+        dispatch_async(queue, { [weak self] in
+            
+            if let url = self?.animal?.imageURL,
+                imageData = NSData(contentsOfURL: url) {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self?.imageView.image = UIImage(data:imageData)})
+            }
+            })
 
     }
     
