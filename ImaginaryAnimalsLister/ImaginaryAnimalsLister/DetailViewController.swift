@@ -23,12 +23,22 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var spinnerView: UIActivityIndicatorView!
     var animal: ImaginaryAnimal?
     
+    let queue: NSOperationQueue = {
+        let queue = NSOperationQueue()
+        queue.name = "Download queue"
+        queue.maxConcurrentOperationCount = 1
+        return queue
+        }()
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loadImage()
-
+        //loadImageWithGCD()
+        //loadImageWithNSBlockOperation()
+        
         // Do any additional setup after loading the view.
     }
     
@@ -37,13 +47,6 @@ class DetailViewController: UIViewController {
     }
     
     private func loadImage() {
-        let queue: NSOperationQueue = {
-            let queue = NSOperationQueue()
-            queue.name = "Download queue"
-            queue.maxConcurrentOperationCount = 1
-            return queue
-        }()
-
         
         var downloadImageOp: DownloadImageOp?
         
@@ -64,31 +67,10 @@ class DetailViewController: UIViewController {
             
             queue.addOperation(downloadImageOp)
         }
-        
-
-        // NSBlockOperation
-        /*
-        var imageData: NSData?
-        let op = NSBlockOperation(block: {[weak self] in
-            if let url = self?.animal?.imageURL {
-                imageData = NSData(contentsOfURL: url)
-            }
-        })
-        
-        op.completionBlock = { [weak self] in
-            if let imageData = imageData {
-                NSOperationQueue.mainQueue().addOperation(
-                    NSBlockOperation(block: {
-                        self?.imageView.image = UIImage(data:imageData)
-                        }
-                ))
-            }
-        }
-        queue?.addOperation(op) */
-        
-        
+    }
+    
+    private func loadImageWithGCD() {
         // GCD
-        /*
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             [weak self] in
             if let url = self?.animal?.imageURL,
@@ -97,7 +79,30 @@ class DetailViewController: UIViewController {
                         self?.imageView.image = UIImage(data:imageData)
                     }
             }
-        }*/
+        }
+    }
+    
+    private func loadImageWithNSBlockOperation() {
+        
+        // NSBlockOperation
+        var imageData: NSData?
+        let op = NSBlockOperation(block: {[weak self] in
+            if let url = self?.animal?.imageURL {
+                imageData = NSData(contentsOfURL: url)
+            }
+            })
+        
+        op.completionBlock = { [weak self] in
+            if let imageData = imageData {
+                NSOperationQueue.mainQueue().addOperation(
+                    NSBlockOperation(block: {
+                        self?.imageView.image = UIImage(data:imageData)
+                        }
+                    ))
+            }
+        }
+        queue.addOperation(op)
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -113,48 +118,11 @@ class DetailViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    private func loadImage () {
-        /*let queue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-        spinnerView.startAnimating()
-        dispatch_async(queue, { [weak self] in
-        
-        if let url = self?.animal?.imageURL,
-        imageData = NSData(contentsOfURL: url) {
-            dispatch_async(dispatch_get_main_queue(), {
-                self?.spinnerView.stopAnimating()
-                self?.imageView.image = UIImage(data:imageData)})
-            
-            }
-        })*/
-        let queue = NSOperationQueue()
-        
-        let loadimageOperation = NSBlockOperation.init(block: { [weak self] in
-            
-            if let url = self?.animal?.imageURL,
-            imageData = NSData(contentsOfURL: url) {
-                let mainqueue = NSOperationQueue.mainQueue()
-                let showImageOp = NSBlockOperation.init(block:{
-                    self?.spinnerView.stopAnimating()
-                    self?.imageView.image = UIImage(data:imageData)})
-                
-                mainqueue.addOperation(showImageOp)
-        
-            }})
-
-        queue.addOperation(loadimageOperation)
-        
-    }
-    
 
     /*
     // MARK: - Navigation
