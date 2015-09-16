@@ -20,44 +20,47 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet weak var spinnerView: UIActivityIndicatorView!
     var animal: ImaginaryAnimal?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        let queue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-        
-        dispatch_async(queue, { [weak self] in
-            
-            if let url = self?.animal?.imageURL,
-                imageData = NSData(contentsOfURL: url) {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self?.imageView.image = UIImage(data:imageData)})
-            }
-            })
-
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         if let animal = animal {
             nameLabel.text = animal.name
             heightLabel.text = "\(animal.height)"
             locationLabel.text = animal.location
             dateLastSeenLabel.text = animal.dateLastSeen
         }
+        
+        loadImage()
+        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func loadImage () {
+        let queue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+        spinnerView.startAnimating()
+        dispatch_async(queue, { [weak self] in
+        
+        if let url = self?.animal?.imageURL,
+        imageData = NSData(contentsOfURL: url) {
+            dispatch_async(dispatch_get_main_queue(), {
+                self?.spinnerView.stopAnimating()
+                self?.imageView.image = UIImage(data:imageData)})
+            
+            }
+        })
     }
     
 
