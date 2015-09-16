@@ -35,11 +35,21 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if #available(iOS 9.0, *) {
+            addStackView()
+        }
+        
         loadImage()
         //loadImageWithGCD()
         //loadImageWithNSBlockOperation()
         
         // Do any additional setup after loading the view.
+    }
+    
+    @available(iOS 9.0, *)
+    private func addStackView() {
+        let view = UIStackView()
+        print(view)
     }
     
     override func viewDidAppear(animated: Bool) {
