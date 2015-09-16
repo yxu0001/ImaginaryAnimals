@@ -36,7 +36,13 @@ class DetailViewController: UIViewController {
     }
     
     private func loadImage() {
-        let queue = NSOperationQueue.currentQueue()
+        let queue: NSOperationQueue = {
+            let queue = NSOperationQueue()
+            queue.name = "Download queue"
+            queue.maxConcurrentOperationCount = 1
+            return queue
+        }()
+
         
         var downloadImageOp: DownloadImageOp?
         
@@ -55,7 +61,7 @@ class DetailViewController: UIViewController {
                 }
             }
             
-            queue?.addOperation(downloadImageOp)
+            queue.addOperation(downloadImageOp)
         }
         
 
