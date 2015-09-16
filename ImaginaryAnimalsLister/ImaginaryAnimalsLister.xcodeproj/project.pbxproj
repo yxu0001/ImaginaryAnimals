@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		AA29DC781BA88E2C0005EA6E /* Animals.json in Resources */ = {isa = PBXBuildFile; fileRef = AA29DC771BA88E2C0005EA6E /* Animals.json */; settings = {ASSET_TAGS = (); }; };
+		AADC686B1BA9F52800A1128D /* DownloadImageOp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADC686A1BA9F52800A1128D /* DownloadImageOp.swift */; settings = {ASSET_TAGS = (); }; };
+		AADC686C1BA9F52800A1128D /* DownloadImageOp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADC686A1BA9F52800A1128D /* DownloadImageOp.swift */; settings = {ASSET_TAGS = (); }; };
 		AAE2BED81BA7780900A9C653 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2BED71BA7780900A9C653 /* AppDelegate.swift */; };
 		AAE2BEDD1BA7780900A9C653 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAE2BEDB1BA7780900A9C653 /* Main.storyboard */; };
 		AAE2BEDF1BA7780900A9C653 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAE2BEDE1BA7780900A9C653 /* Assets.xcassets */; };
@@ -34,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		AA29DC771BA88E2C0005EA6E /* Animals.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Animals.json; path = ImaginaryAnimalsLister/Animals.json; sourceTree = "<group>"; };
+		AADC686A1BA9F52800A1128D /* DownloadImageOp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadImageOp.swift; sourceTree = "<group>"; };
 		AAE2BED41BA7780900A9C653 /* ImaginaryAnimalsLister.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImaginaryAnimalsLister.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE2BED71BA7780900A9C653 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAE2BEDC1BA7780900A9C653 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -98,6 +101,7 @@
 				AAE2BEF91BA7805F00A9C653 /* ImaginaryAnimal.swift */,
 				AAE2BEFC1BA7882E00A9C653 /* AnimalsLoader.swift */,
 				AAE2BEFF1BA78B4300A9C653 /* DetailViewController.swift */,
+				AADC686A1BA9F52800A1128D /* DownloadImageOp.swift */,
 			);
 			path = ImaginaryAnimalsLister;
 			sourceTree = "<group>";
@@ -217,6 +221,7 @@
 				AAE2BEF81BA778D700A9C653 /* ImaginaryAnimalsTableViewController.swift in Sources */,
 				AAE2BF001BA78B4300A9C653 /* DetailViewController.swift in Sources */,
 				AAE2BEFD1BA7882E00A9C653 /* AnimalsLoader.swift in Sources */,
+				AADC686B1BA9F52800A1128D /* DownloadImageOp.swift in Sources */,
 				AAE2BEFA1BA7805F00A9C653 /* ImaginaryAnimal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -225,6 +230,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AADC686C1BA9F52800A1128D /* DownloadImageOp.swift in Sources */,
 				AAE2BEED1BA7780900A9C653 /* ImaginaryAnimalsListerTests.swift in Sources */,
 				AAE2BEFB1BA7805F00A9C653 /* ImaginaryAnimal.swift in Sources */,
 				AAE2BEFE1BA7882E00A9C653 /* AnimalsLoader.swift in Sources */,

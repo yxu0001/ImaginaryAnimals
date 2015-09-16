@@ -36,6 +36,52 @@ class DetailViewController: UIViewController {
     }
     
     private func loadImage() {
+        let queue = NSOperationQueue.currentQueue()
+        
+        var downloadImageOp: DownloadImageOp?
+        
+        if let url = self.animal?.imageURL {
+            downloadImageOp = DownloadImageOp(url: url)
+        }
+        
+        if let downloadImageOp = downloadImageOp {
+            downloadImageOp.completionBlock = { [weak self] in
+                if let imageData = downloadImageOp.imageData {
+                    NSOperationQueue.mainQueue().addOperation(
+                        NSBlockOperation(block: {
+                            self?.imageView.image = UIImage(data:imageData)
+                            }
+                        ))
+                }
+            }
+            
+            queue?.addOperation(downloadImageOp)
+        }
+        
+
+        // NSBlockOperation
+        /*
+        var imageData: NSData?
+        let op = NSBlockOperation(block: {[weak self] in
+            if let url = self?.animal?.imageURL {
+                imageData = NSData(contentsOfURL: url)
+            }
+        })
+        
+        op.completionBlock = { [weak self] in
+            if let imageData = imageData {
+                NSOperationQueue.mainQueue().addOperation(
+                    NSBlockOperation(block: {
+                        self?.imageView.image = UIImage(data:imageData)
+                        }
+                ))
+            }
+        }
+        queue?.addOperation(op) */
+        
+        
+        // GCD
+        /*
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             [weak self] in
             if let url = self?.animal?.imageURL,
@@ -44,7 +90,7 @@ class DetailViewController: UIViewController {
                         self?.imageView.image = UIImage(data:imageData)
                     }
             }
-        }
+        }*/
     }
     
     override func viewWillAppear(animated: Bool) {
