@@ -20,6 +20,7 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet weak var spinnerView: UIActivityIndicatorView!
     var animal: ImaginaryAnimal?
     
     
@@ -107,11 +108,51 @@ class DetailViewController: UIViewController {
             locationLabel.text = animal.location
             dateLastSeenLabel.text = animal.dateLastSeen
         }
+        
+        loadImage()
+        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func loadImage () {
+        /*let queue = dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+        spinnerView.startAnimating()
+        dispatch_async(queue, { [weak self] in
+        
+        if let url = self?.animal?.imageURL,
+        imageData = NSData(contentsOfURL: url) {
+            dispatch_async(dispatch_get_main_queue(), {
+                self?.spinnerView.stopAnimating()
+                self?.imageView.image = UIImage(data:imageData)})
+            
+            }
+        })*/
+        let queue = NSOperationQueue()
+        
+        let loadimageOperation = NSBlockOperation.init(block: { [weak self] in
+            
+            if let url = self?.animal?.imageURL,
+            imageData = NSData(contentsOfURL: url) {
+                let mainqueue = NSOperationQueue.mainQueue()
+                let showImageOp = NSBlockOperation.init(block:{
+                    self?.spinnerView.stopAnimating()
+                    self?.imageView.image = UIImage(data:imageData)})
+                
+                mainqueue.addOperation(showImageOp)
+        
+            }})
+
+        queue.addOperation(loadimageOperation)
+        
     }
     
 
