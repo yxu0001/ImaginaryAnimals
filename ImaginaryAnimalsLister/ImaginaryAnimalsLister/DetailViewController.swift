@@ -25,18 +25,23 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loadImage()
 
         // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
+    }
+    
+    private func loadImage() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            if let url = self.animal?.imageURL,
+            [weak self] in
+            if let url = self?.animal?.imageURL,
                 imageData = NSData(contentsOfURL: url) {
                     dispatch_async(dispatch_get_main_queue()) {
-                        self.imageView.image = UIImage(data:imageData)
+                        self?.imageView.image = UIImage(data:imageData)
                     }
             }
         }
