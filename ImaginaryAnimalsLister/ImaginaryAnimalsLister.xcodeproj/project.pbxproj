@@ -155,6 +155,7 @@
 		AAE2BECC1BA7780900A9C653 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = athenahealth;
 				TargetAttributes = {
